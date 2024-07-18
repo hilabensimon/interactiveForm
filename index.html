@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טופס הרשמה לסדנת בישול</title>
+    <link href="styles/myStyle.css" rel="stylesheet" />
+    <script src="jScripts/JavaScript.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>טופס הרשמה לסדנת בישול</h1>
+        <p>
+            אנא מלאו את הטופס הבא כדי שנדע לאיזו סדנה לרשום אתכם. <br/>
+            אתם מוזמנים גם למלא את העדפותיכם על מנת להירשם לסדנה ספציפית!
+        </p>
+        <hr/> <br/>
+        <form id="cookingWorkshopForm" oninput="checkFormValidity()" onclick="updateFoodImages()">
+            <label for="name">שם:</label>
+            <input type="text" id="name" name="name"/>
+            <br/><br/>
+
+            <fieldset>
+                <legend>בחר סוג סדנה:</legend>
+                <input type="radio" id="bakery" name="workshopType" value="מאפים">
+                <label for="bakery">מאפים</label><br>
+                <input type="radio" id="mainDishes" name="workshopType" value="מנות עיקריות">
+                <label for="mainDishes">מנות עיקריות</label><br>
+                <input type="radio" id="desserts" name="workshopType" value="קינוחים">
+                <label for="desserts">קינוחים</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>העדפות דיאטטיות:</legend>
+                <input type="checkbox" id="vegetarian" name="dietPreference" value="צמחוני" onclick="updateLimitationImages()">
+                <label for="vegetarian">צמחוני</label><br>
+                <input type="checkbox" id="vegan" name="dietPreference" value="טבעוני" onclick="updateLimitationImages()">
+                <label for="vegan">טבעוני</label><br>
+                <input type="checkbox" id="glutenFree" name="dietPreference" value="ללא גלוטן" onclick="updateLimitationImages()">
+                <label for="glutenFree">ללא גלוטן</label><br/>
+                <input type="checkbox" id="normal" name="dietPreference" value="ללא שינויים" >
+                <label for="normal">ללא שינויים</label>
+            </fieldset>
+
+            <button type="button" id="submitButton" onclick="submitForm()">אישור</button>
+        </form>
+        <div id="confirmationMessage" style="display: none;">תודה, הטופס נשלח בהצלחה!</div>
+        <div class="images-container">
+            <img src="bakery.jpg" id="bakeryImage" style="display: none;">
+            <img src="mainDishes.jpg" id="mainDishesImage" style="display: none;">
+            <img src="desserts.jpg" id="dessertsImage" style="display: none;">
+        </div>
+        <div class="limitationFood">
+            <img src="carrot.png" id="vegetarianImage" class="foodImage" style="display: flex;">
+            <img src="leaf.png" id="veganImage" class="foodImage" style="display: flex;">
+            <img src="wheat-slash.png" id="glutenFreeImage" class="foodImage" style="display: flex;">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

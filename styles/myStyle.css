@@ -1,0 +1,85 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../Images/bg.png');
+    background-size: 100%;
+    direction: rtl;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 40px;
+    height: 650px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    bottom: 1%;
+}
+
+#dessertsImage {
+    height: 120px;
+    width: 100px;
+}
+
+#submitButton {
+    margin: 1rem;
+    position: relative;
+    right: 35%;
+    height: 30px;
+    width: 100px;
+    font-size: 16px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+button:enabled {
+    opacity: 1;
+}
+
+#confirmationMessage {
+    display: none;
+}
+
+.images-container img {
+    max-width: 100px;
+    margin: 10px;
+    display: none;
+    position: relative;
+    right: 36%;
+    top: 15px;
+}
+
+.limitationFood {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    position: absolute;
+    right: 50%;
+    top: 51.3%;
+}
+
+.foodImage {
+    opacity: 0.5;
+    border: none;
+    border-radius: 10%;
+    color: darkred;
+    height: 40px;
+    width: 40px;
+}
