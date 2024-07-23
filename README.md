@@ -20,3 +20,5 @@ This project is a cooking workshop registration form created using HTML, CSS, an
 ## Demo
 
 https://hilabensimon.github.io/interactiveForm/
+##credit
+all the photos were taken from freepik and flaticon
