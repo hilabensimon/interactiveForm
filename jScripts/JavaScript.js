@@ -1,4 +1,4 @@
-﻿window.onload = function () {     // בדיקת תקינות הטופס עם הטענת הדף
+window.onload = function () {     // בדיקת תקינות הטופס עם הטענת הדף
     //מפעיל את הפוקנציות בטעינת הדף
 
     checkFormValidity(); //קורא לפונקציה של בדיקת הטופס
@@ -6,11 +6,10 @@
     updateFoodImages();//קורא לפונקציה לעדכון תמונות המזון
 };
 function checkFormValidity() {
-    var nameInput = document.getElementById('name'); //מקבל את השם שהמשתמש מזין
+    var nameInput = document.getElementById('name').value; //מקבל את השם שהמשתמש מזין
     var workshopTypeRadios = document.getElementsByName('workshopType'); //מקבל את הבחירה של המשתמש לסוג סדנא
     var limitationTypeCheck = document.getElementsByName('dietPreference');//מקבל את הבחירה של המשתמש לסוג העדפות דיאטטיות
     var submitButton = document.getElementById('submitButton');
-    var nameFilled = (nameInput.value.length > 0); //מוודא שהמשתמש רשם שם
     var workshopSelected = 0; //מאפס את הבחירה ל-0
     var limitationSelected = 0;//מאפס את הבחירה ל-0
 
@@ -29,7 +28,30 @@ function checkFormValidity() {
         }
     }
 
-    var enableButton = nameFilled * workshopSelected * limitationSelected;//מכפיל בין כל שלושת הבחירות, אם יצא 1 זה אומר שהמשתמש בחר את כל הבחירות את כל הבחירות,אחרת יצא 0 ונדע שהוא לא בחר את כל הבחירות
+    //בודק אם הוקלדו תווים
+    if (nameInput.length == 0) {
+        nameInput = 0;
+        document.getElementById('numAlert').innerHTML = "";
+
+    }
+    else {
+        for (var i = 0; i < nameInput.length; i++) {
+            if (nameInput[i] >= '0' && nameInput[i] <= '9'){  //בודק אם התו הוא מספר
+                nameInput = 0;
+                document.getElementById('numAlert').innerHTML = "אין להכניס מספרים";
+            }
+        }
+        if (nameInput != 0) { //אם לא נמצא מספר
+            nameInput = 1;
+            document.getElementById('numAlert').innerHTML = "";
+
+        }
+    }
+
+    
+    
+
+    var enableButton = nameInput * workshopSelected * limitationSelected;//מכפיל בין כל שלושת הבחירות, אם יצא 1 זה אומר שהמשתמש בחר את כל הבחירות את כל הבחירות,אחרת יצא 0 ונדע שהוא לא בחר את כל הבחירות
     submitButton.disabled = !(enableButton == 1); //אם יוצא 1 ,תפעיל את כפתור , אם לא משאיר אותו לא פעיל
 }
 
@@ -37,7 +59,6 @@ function submitForm() { //פונקציה שמראה למשתמש במה הוא �
     var nameInput = document.getElementById('name'); //מקבלת את שם המשתמש
     var workshopInputs = document.getElementsByName('workshopType'); //מקבלת את כל אפשרויות הסדנה
     var limitationInputs = document.getElementsByName('dietPreference');//מקבלת את כל ההעדפות הדיאטטיות
-    var confirmationMessage = document.getElementById('confirmationMessage');
     var selectedWorkshop = ''; //משתנה לשמירת הסדנה הנבחרת
     var selectedLimitations = ''; // משתנה לשמירת ההעדפות הדיאטטיות שנבחרו
     var hasLimitations = 0; // שמירת ערך הסדנה הנבחרת
@@ -64,10 +85,30 @@ function submitForm() { //פונקציה שמראה למשתמש במה הוא �
 
 
     // יצירת הודעת האישור עם פרטי הבחירה
-    confirmationMessage.innerHTML = 'תודה, ' + nameInput.value + ', הטופס נשלח בהצלחה!<br>' +
+    document.getElementById('confirmationMessage').innerHTML = 'תודה, ' + nameInput.value + ', הטופס נשלח בהצלחה!<br>' +
         'הסדנא שבחרת היא: ' + selectedWorkshop + '<br>' +
         'העדפות דיאטטיות: ' + selectedLimitations;
-    confirmationMessage.style.display = 'block'; // הצגת הודעת האישור
+    document.getElementById('confirmationMessage').style.display = 'block'; // הצגת הודעת האישור
+
+
+    document.getElementById('name').value = ""; //מאפס את השם שהוקלד
+
+    //מאפס את בחירת המשתמש בסוג הסדנה
+    document.getElementById('bakery').checked = false;
+    document.getElementById('mainDishes').checked = false;
+    document.getElementById('desserts').checked = false;
+
+    //מאפס את בחירת המשתמש בהגבלות הדיאטטיות
+    document.getElementById('vegetarian').checked = false;
+    document.getElementById('vegan').checked = false;
+    document.getElementById('glutenFree').checked = false;
+    document.getElementById('normal').checked = false;
+
+    updateFoodImages();
+    updateLimitationImages();
+    submitButton.disabled = true;
+ 
+    
 }
 
 function updateFoodImages() { //מעדכן את התמונות של האוכל
