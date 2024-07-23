@@ -1,5 +1,5 @@
 
-# Project Overview
+# Interactive Form
 
 This project is a cooking workshop registration form created using HTML, CSS, and JavaScript. The form allows users to register for different types of cooking workshops and specify their dietary preferences. Based on the user's input, relevant images are displayed, and a confirmation message is shown upon submission.
 
